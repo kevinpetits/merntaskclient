@@ -87,6 +87,9 @@ a {
   display: block;
   background-color: transparent;
 }
+.cerrar-sesion {
+  color: var(--blanco);
+}
 
 @media (min-width: 768px) {
   .contenedor-app {
@@ -136,6 +139,7 @@ aside  {
 .app-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: var(--gris2);
   padding: 4rem;
 }
@@ -199,6 +203,10 @@ aside  {
   align-items: center;
   margin-bottom: 1rem;
   border-radius: .5rem;
+
+}
+
+@media (min-width:768px) {
 
 }
 .sombra {
