@@ -4,7 +4,7 @@ import projectContext from '../../context/projects/projectContext';
 const NewProjectForm = () => {
 
     const contextProject = useContext(projectContext);
-    const { formProject } =  contextProject;
+    const { formProject, showForm } =  contextProject;
 
     const [project, setProject] = useState({
         projectName: ''
@@ -21,11 +21,12 @@ const NewProjectForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        
     }
 
     return ( 
         <>
-        <button type="button" className="btn btn-block btn-primario">Nuevo proyecto</button>
+        <button type="button" className="btn btn-block btn-primario" onClick={showForm}>Nuevo proyecto</button>
 
         { formProject 
         ? (

@@ -1,18 +1,17 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import ProjectItem from './ProjectItem'
-
+import projectContext from '../../context/projects/projectContext';
 
 const ProjectList = () => {
 
-    const projects = [
-        {projectName: 'Tienda Virtual', id: 1},
-        {projectName: 'MERN Ecommerce', id: 2},
-        {projectName: 'MERN Facebook', id: 3},
-        {projectName: 'MERN Twitter', id: 4},
-        {projectName: 'MERN Youtube', id: 5},
-        {projectName: 'MERN Project Manager', id: 6},
-        {projectName: 'MERN IDK', id: 7},
-    ]
+    const contextProject = useContext(projectContext);
+    const { projects, getProjects } =  contextProject;
+
+    useEffect(() => {
+        getProjects();
+    }, [])
+
+    if(projects.length === 0) return null;  
 
     return ( 
         <ul className="listado-proyectos">
