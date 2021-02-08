@@ -2,23 +2,23 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom'
 
 const Signup = () => {
-
+    // State para registrarse
     const [user, setUser] = useState({
         email: '',
         name: '',
         password: '',
         confirmPassword: ''
     });
-
+    // extraer de usuario
     const {email, name, password, confirmPassword} = user;
-
+    // obtiene la informacion de los campos
     const handleChange = (event) => {
         setUser({
             ...user,
             [event.target.name] : event.target.value
         })
     }
-
+    // Cuando el usuario quiere registrarse
     const handleSubmit = (event) => {
         event.preventDefault();
     }

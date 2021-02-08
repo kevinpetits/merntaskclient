@@ -2,25 +2,24 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom'
 
 const Signin = () => {
-
+    // State para iniciar sesión
     const [user, setUser] = useState({
         email: '',
         password: ''
     });
-
+    // extraer de usuario
     const {email, password} = user;
-
+    // obtiene la informacion de los campos
     const handleChange = (event) => {
         setUser({
             ...user,
             [event.target.name] : event.target.value
         })
     }
-
+    // Cuando el usuario quiere iniciar sesión
     const handleSubmit = (event) => {
         event.preventDefault();
     }
-
     return ( 
         <div className="form-usuario">
             <div className="contenedor-form sombra-dark">
