@@ -8,13 +8,26 @@ const Task = ({task}) => {
     const { project } =  contextProject;
 
     const contextTask = useContext(TaskContext);
-    const { deleteTask, getTasksByProject } = contextTask;
+    const { deleteTask, getTasksByProject, changeTaskStatus, actualTask } = contextTask;
 
     const [actualProject] = project;
 
-    const HandleDeleteTask = (id) => {
+    const handleDeleteTask = (id) => {
         deleteTask(id);
         getTasksByProject(actualProject.id);
+    }
+
+    const handleTaskStatus = task => {
+        if(task.status){
+            task.status = false;
+        } else {
+            task.status = true;
+        }
+        changeTaskStatus(task);
+    }
+
+    const selectTask = task => {
+        actualTask(task);
     }
 
     return ( 
@@ -23,16 +36,16 @@ const Task = ({task}) => {
 
             <div className="estado">
                 {task.status 
-                ? (<button type="button" className="completo">Completo</button>)
-                : (<button type="button" className="incompleto">Incompleto</button>)
+                ? (<button type="button" className="completo" onClick={() => handleTaskStatus(task)}>Completo</button>)
+                : (<button type="button" className="incompleto" onClick={() => handleTaskStatus(task)}>Incompleto</button>)
                 }
             </div>
 
             <div className="acciones">
-                <button type="button" className="btn btn-primario">
+                <button type="button" className="btn btn-primario" onClick={() => selectTask(task)}>
                     Editar
                 </button>
-                <button type="button" className="btn btn-secundario" onClick={() => HandleDeleteTask(task.id)}>
+                <button type="button" className="btn btn-secundario" onClick={() => handleDeleteTask(task.id)}>
                     Eliminar
                 </button>
             </div>

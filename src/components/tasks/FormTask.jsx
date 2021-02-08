@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import ProjectContext from '../../context/projects/projectContext';
 import TaskContext from '../../context/tasks/taskContext';
 
@@ -8,7 +8,17 @@ const FormTask = () => {
     const { project } =  contextProject;
 
     const contextTask = useContext(TaskContext);
-    const { taskError, addTaskToProject, validateTask, getTasksByProject } = contextTask;
+    const { selectedTask, taskError, addTaskToProject, validateTask, getTasksByProject, updateTask } = contextTask;
+
+    useEffect(() => {
+        if(selectedTask !== null){
+            setTask(selectedTask)
+        } else {
+            setTask({
+                taskName: ''
+            })
+        }
+    }, [selectedTask])
 
     const [task, setTask] = useState({
         taskName: ''
@@ -29,21 +39,22 @@ const FormTask = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
         if(taskName.trim() === ''){
             validateTask();
             return;
         }
-
-        task.projectId = actualProject.id;
-        task.status = false;
-        addTaskToProject(task);
-
+        if(selectedTask === null) {
+            task.projectId = actualProject.id;
+            task.status = false;
+            addTaskToProject(task);
+        } else {
+            updateTask(task);
+        }
         getTasksByProject(actualProject.id);
-        
         setTask({
             taskName: ''
         });
+        
     }
 
     return ( 
@@ -53,7 +64,7 @@ const FormTask = () => {
                     <input type="text" className="input-text" placeholder="Nombre de la tarea..." name="taskName" value={taskName} onChange={handleChange} />
                 </div>
                 <div className="contenedor-input">
-                    <input type="submit" className="btn btn-block btn-primario" value="Agregar tarea" />
+                    <input type="submit" className="btn btn-block btn-primario" value={selectedTask ? 'Modificar tarea' : 'Agregar tarea'} />
                 </div>
             </form>
 
