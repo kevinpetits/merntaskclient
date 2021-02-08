@@ -6,21 +6,18 @@ import {PROJECT_FORM, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM, ACTUAL_PROJECT, 
 
 
 const ProjectState = props => {
-    
     const projects = [
         {projectName: 'Tienda Virtual', id: 1},
         {projectName: 'MERN Ecommerce', id: 2},
         {projectName: 'MERN Facebook', id: 3},
         {projectName: 'MERN Twitter', id: 4},
     ];
-
     const initialState = {
         projects : [],
         formProject : false,
         formError: false,
         project: null
     }
-    
     // Dispatch para ejecutar las acciones del reducer
     const [state, dispatch] = useReducer(ProjectReducer, initialState);
     // Serie de funciones para el CRUD
@@ -29,7 +26,7 @@ const ProjectState = props => {
             type: PROJECT_FORM
         })
     }
-     // Obtener los proyectos
+    // Obtener los proyectos
     const getProjects = () => {
         dispatch({
             type: GET_PROJECTS,
@@ -66,7 +63,6 @@ const ProjectState = props => {
             payload: projectId
         })
     }
-
     return (
         <ProjectContext.Provider 
         value={{

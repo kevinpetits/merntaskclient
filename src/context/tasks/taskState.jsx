@@ -23,16 +23,17 @@ const TaskState = props => {
         taskError: false,
         selectedTask: null
     };
-
+    // Dispatch para ejecutar las acciones del reducer
     const [state, dispatch] = useReducer(TaskReducer, initialState);
-
+    // Serie de funciones para el CRUD
+    // Obtiene las tareas por proyecto seleccionado
     const getTasksByProject = projectId => {
         dispatch({
             type: PROJECT_TASKS,
             payload: projectId
         })
     }
-
+    // Agregar nueva tarea
     const addTaskToProject = task => {
         task.id = uuid();
         dispatch({
@@ -40,41 +41,40 @@ const TaskState = props => {
             payload: task
         })
     }
-
+    // Valida el formulario por errores
     const validateTask = () => {
         dispatch({
             type: VALIDATE_TASK
         })
     }
-
+    // Elimina una tarea
     const deleteTask = taskId => {
         dispatch({
             type: DELETE_TASK,
             payload: taskId
         })
     }
-
+    // Modifica el estado de una tarea completo/incompleto
     const changeTaskStatus = task => {
         dispatch({
             type: STATUS_TASK,
             payload: task
         })
     }
-
+    // Selecciona la tarea actual (Es necesario para modificarla)
     const actualTask = task => {
         dispatch({
             type: ACTUAL_TASK,
             payload: task
         })
     }
-
+    // Modificamos el nombre de la tarea seleccionada
     const updateTask = task => {
         dispatch({
             type: UPDATE_TASK,
             payload: task
         })
     }
-
     return (
         <TaskContext.Provider
         value={{
