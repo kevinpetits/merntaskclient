@@ -21,21 +21,22 @@ const ProjectState = props => {
         project: null
     }
     
+    // Dispatch para ejecutar las acciones del reducer
     const [state, dispatch] = useReducer(ProjectReducer, initialState);
-
+    // Serie de funciones para el CRUD
     const showForm = () => {
         dispatch({
             type: PROJECT_FORM
         })
     }
-
+     // Obtener los proyectos
     const getProjects = () => {
         dispatch({
             type: GET_PROJECTS,
             payload: projects
         })
     }
-
+    // Agregar nuevo proyecto
     const addProject = project => {
         const id = uuid();
         project.id = id;
@@ -45,20 +46,20 @@ const ProjectState = props => {
             payload: project
         })
     }
-
+    // Valida el formulario por errores
     const showError = () => {
         dispatch({
             type: VALIDATE_FORM
         })
     }
-
+    // Selecciona el Proyecto que el usuario quiera
     const actualProject = projectId => {
         dispatch({
             type: ACTUAL_PROJECT,
             payload: projectId
         })
     }
-
+    // Elimina un proyecto
     const deleteProject = projectId => {
         dispatch({
             type: DELETE_PROJECT,
