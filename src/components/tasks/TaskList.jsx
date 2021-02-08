@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Task from './Task';
+import projectContext from '../../context/projects/projectContext';
 
 const TaskList = () => {
+
+    const contextProject = useContext(projectContext);
+    const { project } =  contextProject;
+
+    if(!project) return <h2>Selecciona un proyecto</h2>
+
+    const [actualProject] = project;
 
     const tasks = [
         {id: 1, taskName: 'Elegir plataforma', status: true},
@@ -13,7 +21,7 @@ const TaskList = () => {
 
     return ( 
         <>
-        <h2>Proyecto: Tienda Virtual</h2>
+        <h2>Proyecto: {actualProject.projectName}</h2>
 
         <ul className="listado-tareas">
             {tasks.length === 0 
