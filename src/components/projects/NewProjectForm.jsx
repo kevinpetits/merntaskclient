@@ -1,9 +1,9 @@
 import React, {useContext, useState} from 'react';
-import projectContext from '../../context/projects/projectContext';
+import ProjectContext from '../../context/projects/projectContext';
 
 const NewProjectForm = () => {
 
-    const contextProject = useContext(projectContext);
+    const contextProject = useContext(ProjectContext);
     const { formProject, formError, showForm, addProject, showError } =  contextProject;
 
     const [project, setProject] = useState({
