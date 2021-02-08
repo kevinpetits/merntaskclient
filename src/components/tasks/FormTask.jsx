@@ -8,7 +8,7 @@ const FormTask = () => {
     const { project } =  contextProject;
 
     const contextTask = useContext(TaskContext);
-    const { taskError, addTaskToProject, validateTask } = contextTask;
+    const { taskError, addTaskToProject, validateTask, getTasksByProject } = contextTask;
 
     const [task, setTask] = useState({
         taskName: ''
@@ -38,6 +38,12 @@ const FormTask = () => {
         task.projectId = actualProject.id;
         task.status = false;
         addTaskToProject(task);
+
+        getTasksByProject(actualProject.id);
+        
+        setTask({
+            taskName: ''
+        });
     }
 
     return ( 

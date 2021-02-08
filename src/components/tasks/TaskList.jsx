@@ -15,9 +15,6 @@ const TaskList = () => {
 
     const [actualProject] = project;
 
-    const tasks = [
-    ];
-
     const handleDelete = () => {
         deleteProject(actualProject.id);
     }
@@ -30,7 +27,7 @@ const TaskList = () => {
             {projectTasks.length === 0 
             ? (<li className="tarea"><p>No hay tareas</p></li>)
             : projectTasks.map(task => (
-                <Task task={task} key={task} />
+                <Task task={task} key={task.id} />
             ))
             }
         </ul>
