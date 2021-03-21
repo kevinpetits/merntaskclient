@@ -49,7 +49,9 @@ const NewProjectForm = () => {
         : null
         }
 
-        { formError ? <p className="mensaje error">El nombre del proyecto es obligatorio</p> : null}
+        { formError ? <div class="alert alert-danger" role="alert">
+            Project name is required!
+            </div> : null}
         </>
      );
 }

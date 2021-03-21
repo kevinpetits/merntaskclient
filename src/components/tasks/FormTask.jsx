@@ -62,17 +62,19 @@ const FormTask = () => {
     }
 
     return ( 
-        <div className="formulario" >
+        <div className="container-fluid" >
             <form onSubmit={handleSubmit}>
-                <div className="contenedor-input">
-                    <input type="text" className="input-text" placeholder="Nombre de la tarea..." name="taskName" value={taskName} onChange={handleChange} />
+                <div className="form-group">
+                    <input type="text" className="form-control" placeholder="Task name..." name="taskName" value={taskName} onChange={handleChange} />
                 </div>
-                <div className="contenedor-input">
-                    <input type="submit" className="btn btn-block btn-primario" value={selectedTask ? 'Modificar tarea' : 'Agregar tarea'} />
+                <div className="form-group">
+                    <input type="submit" className="btn btn-block btn-primary btn-lg" value={selectedTask ? 'Update Task' : 'Add Task'} />
                 </div>
             </form>
 
-            {taskError ? <p className="mensaje error">El nombre de la tarea es obligatorio</p> : null}
+            {taskError ? <div class="alert alert-danger" role="alert">
+            Task name is required!
+            </div>: null}
         </div>
      );
 }

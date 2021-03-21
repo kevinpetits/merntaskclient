@@ -19,7 +19,7 @@ const ProjectItem = ({project}) => {
     return ( 
         <li className="nav-item ">
               <a className="nav-link" onClick={() => handleClick(project._id)} href="#!">
-              <i class="material-icons">library_books</i>
+              <i className="material-icons">library_books</i>
                 <p>{project.projectName}</p>
               </a>
         </li>

@@ -30,25 +30,22 @@ const Task = ({task}) => {
         actualTask(task);
     }
     return ( 
-        <li className="tarea sombra">
-            <p>{task.taskName}</p>
+        <tr>
+            <td className="text-center" style={{overflow: "auto", whiteSpace: "nowrap", wordBreak: "break-all", maxWidth: "800px"}}>{task.taskName}</td>
+            <td className="text-center">{task.status 
+                 ? (<button type="button" className="btn btn-success btn-block btn-sm" onClick={() => handleTaskStatus(task)}>Completo</button>)
+                 : (<button type="button" className="btn btn-danger btn-block btn-sm" onClick={() => handleTaskStatus(task)}>Incompleto</button>)
+                 }</td>
 
-            <div className="estado">
-                {task.status 
-                ? (<button type="button" className="completo" onClick={() => handleTaskStatus(task)}>Completo</button>)
-                : (<button type="button" className="incompleto" onClick={() => handleTaskStatus(task)}>Incompleto</button>)
-                }
-            </div>
-
-            <div className="acciones">
-                <button type="button" className="btn btn-primario" onClick={() => selectTask(task)}>
-                    Editar
+            <td className="td-actions text-center">
+                <button type="button" rel="tooltip" className="btn btn-warning btn-lg m-1" onClick={() => selectTask(task)}>
+                    <i className="material-icons">edit</i>
                 </button>
-                <button type="button" className="btn btn-secundario" onClick={() => handleDeleteTask(task._id)}>
-                    Eliminar
+                <button type="button" rel="tooltip" className="btn btn-danger btn-lg m-1" onClick={() => handleDeleteTask(task._id)}>
+                    <i className="material-icons">close</i>
                 </button>
-            </div>
-        </li>
+            </td>
+        </tr>
      );
 }
  

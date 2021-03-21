@@ -19,18 +19,18 @@ const Projects = () => {
         <>
             <Sidebar />
 
-            <div className="main-panel">
+            <div className="main-panel bg-light">
                 <Bar />
 
 
 
 
-                {/* <main>
+                <div className="content bg-light">
                 <FormTask />
-                    <div className="contenedor-tareas">
+                    <div className="container-fluid col-md-10">
                         <TaskList />
                     </div>
-                </main> */}
+                </div>
             </div>
         </>
      );

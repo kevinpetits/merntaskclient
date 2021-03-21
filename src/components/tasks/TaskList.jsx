@@ -20,17 +20,28 @@ const TaskList = () => {
     }
     return ( 
         <>
-        <h2>Proyecto: {actualProject.projectName}</h2>
-        <ul className="listado-tareas">
-            {projectTasks.length === 0 
-            ? (<li className="tarea"><p>No hay tareas</p></li>)
-            :   projectTasks.map((task, index)=> (
-                    <Task task={task} key={index} />
-                ))
-            }
-        </ul>
-
-        <button type="button" className="btn btn-eliminar" onClick={handleDelete}>Eliminar proyecto &times;</button>
+        <h2 className="text-center">{actualProject.projectName}</h2>
+        {projectTasks.length === 0 ? 
+        (<h3 className="p-4">No tasks created</h3>) :
+        <table className="table table-striped table-hover">
+        <thead>
+            <tr >
+                <th className="text-center" style={{width: "70%"}}>Task Name</th>
+                <th className="text-center" style={{width: "15%"}}>Status</th>
+                <th className="text-center" style={{width: "15%"}}>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {projectTasks.map((task, index)=> (
+                        <Task task={task} key={index} />
+                    ))
+                }
+        </tbody>
+        </table>
+    
+        }
+        
+        <button type="button" className="btn btn-danger btn-lg" onClick={handleDelete}>Delete Project &times;</button>
         </>
      );
 }

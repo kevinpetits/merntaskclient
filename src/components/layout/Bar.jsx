@@ -22,7 +22,7 @@ const Bar = () => {
         <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
           <div className="container-fluid">
             <div className="navbar-wrapper">
-              <a className="navbar-brand" href="#!">Dashboard</a>
+              {user ? <p className="navbar-brand">Hello, <span>{user.name}</span></p> : null}
             </div>
             <button className="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
               <span className="sr-only">Toggle navigation</span>
@@ -33,18 +33,12 @@ const Bar = () => {
             <div className="collapse navbar-collapse justify-content-end">
               <ul className="navbar-nav">
                  <li className="nav-item dropdown">
-                  <a className="nav-link" href="#!" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button className="btn btn-primary btn-link" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={() => logOut()}>
                     Logout<i className="material-icons">person</i>
                     <p className="d-lg-none d-md-block">
                       Account
                     </p>
-                  </a>
-                  <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                    <a className="dropdown-item" href="#">Profile</a>
-                    <a className="dropdown-item" href="#">Settings</a>
-                    <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="#">Log out</a>
-                  </div>
+                  </button>
                 </li>
               </ul>
             </div>

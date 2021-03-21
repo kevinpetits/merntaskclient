@@ -21,7 +21,7 @@ const ProjectList = () => {
         // eslint-disable-next-line
     }, [message])
     // revisar si proyectos tiene contenido
-    if(projects.length === 0) return <p>No hay proyectos, comienza creando uno!</p>;  
+    if(projects.length === 0) return <p>No projects yet, start creating one!</p>;  
     return ( 
         <ul className="nav">
             {alert ? (<div className={`alerta ${alert.category}`}>{alert.msg}</div>) : null}

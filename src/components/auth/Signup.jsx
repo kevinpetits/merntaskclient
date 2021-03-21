@@ -66,34 +66,56 @@ const Signup = (props) => {
     }
 
     return ( 
-        <div className="form-usuario">
-            {alert ? (<div className={`alerta ${alert.category}`}>{alert.msg}</div>) : null}
-            <div className="contenedor-form sombra-dark">
-                <h1>Crear cuenta</h1>
-                <form onSubmit={handleSubmit}>
-                    <div className="campo-form">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Ingresa tu email" value={email} onChange={handleChange} />
-                    </div>
-                    <div className="campo-form">
-                        <label htmlFor="name">Nombre</label>
-                        <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" value={name} onChange={handleChange} />
-                    </div>
-                    <div className="campo-form">
-                        <label htmlFor="password">Contraseña</label>
-                        <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" value={password} onChange={handleChange} />
-                    </div>
-                    <div className="campo-form">
-                        <label htmlFor="confirmPassword">Confirmar contraseña</label>
-                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Ingresa tu contraseña" value={confirmPassword} onChange={handleChange} />
-                    </div>
 
-                    <div className="campo-form">
-                        <input type="submit" className="btn btn-primario btn-block" value="Iniciar sesión" />
+        <div className="container-fluid">
+          {alert ? (<div class="alert alert-danger text-center" role="alert">
+            {alert.msg}
+            </div>) : null}
+          <div className="row justify-content-center">
+            <div className="col-md-4 " style={{marginTop: "15%"}}>
+              <div className="card" >
+                <div className="card-header card-header-primary text-center">
+                  <h3 className="card-title">Sign Up to Project Manager APP</h3>
+                </div>
+                <div className="card-body">
+                  <form onSubmit={handleSubmit}>
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label className="bmd-label-floating" htmlFor="email">Email</label>
+                          <input type="email" name="email" id="email" className="form-control" placeholder="Your email here" value={email} onChange={handleChange}  />
+                        </div>
+                      </div>
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label className="bmd-label-floating">Name</label>
+                          <input type="text" className="form-control" name="name" placeholder="Your name here" value={name} onChange={handleChange} />
+                        </div>
+                      </div>
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label className="bmd-label-floating" htmlFor="password">Password</label>
+                          <input type="password" name="password" id="password" className="form-control" placeholder="Your password here" value={password} onChange={handleChange} />
+                        </div>
+                      </div>
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label className="bmd-label-floating" htmlFor="confirmPassword">Password</label>
+                          <input type="password" name="confirmPassword" id="confirmPassword" className="form-control" placeholder="Confirm your password here" value={confirmPassword} onChange={handleChange} />
+                        </div>
+                      </div>
                     </div>
-                </form>
-                <Link to={'/'} className="enlace-cuenta">Iniciar sesión</Link>
+                    <div className="form-group">
+                      <Link to={'/'} className="btn btn-primary btn-link pull-left">Sign IN</Link>
+                        <input type="submit" className="btn btn-primary pull-right" value="Sign UP" />
+                    </div>
+                    <div className="clearfix"></div>
+                  </form>
+                  
+                </div>
+              </div>
             </div>
+          </div>
         </div>
      );
 }

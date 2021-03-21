@@ -18,7 +18,7 @@ if(token){
 
 function App() {
   return (
-    <div className="wrapper">
+    <div className="wrapper bg-dark">
     <ProjectState >
       <TaskState>
         <AlertState>

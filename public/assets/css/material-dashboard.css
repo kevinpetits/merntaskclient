@@ -13595,6 +13595,18 @@ select.form-control {
   }
 }
 
+@media (max-width: 990px){
+  .nav-link > p{
+    color: white;
+  }
+  .logo > a{
+    color: white !important;
+  }
+  .sidebar-wrapper > h3{
+    color: white;
+  }
+}
+
 .form-control-feedback {
   position: absolute;
   top: 4px;
