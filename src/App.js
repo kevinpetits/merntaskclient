@@ -18,6 +18,7 @@ if(token){
 
 function App() {
   return (
+    <div className="wrapper">
     <ProjectState >
       <TaskState>
         <AlertState>
@@ -33,6 +34,7 @@ function App() {
         </AlertState>
       </TaskState>
     </ProjectState>
+    </div>
   );
 }
 

@@ -17,11 +17,17 @@ const ProjectItem = ({project}) => {
     }
 
     return ( 
-        <li>
-            <button type="button" className="btn btn-blank" onClick={() => handleClick(project._id)}>
-                {project.projectName}
-            </button>
+        <li className="nav-item ">
+              <a className="nav-link" onClick={() => handleClick(project._id)} href="#!">
+              <i class="material-icons">library_books</i>
+                <p>{project.projectName}</p>
+              </a>
         </li>
+        // <li>
+        //     <button type="button" className="btn btn-blank" onClick={() => handleClick(project._id)}>
+        //         {project.projectName}
+        //     </button>
+        // </li>
      );
 }
  

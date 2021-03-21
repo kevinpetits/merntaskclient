@@ -23,7 +23,7 @@ const ProjectList = () => {
     // revisar si proyectos tiene contenido
     if(projects.length === 0) return <p>No hay proyectos, comienza creando uno!</p>;  
     return ( 
-        <ul className="listado-proyectos">
+        <ul className="nav">
             {alert ? (<div className={`alerta ${alert.category}`}>{alert.msg}</div>) : null}
                 {projects.map(project => 
                         <ProjectItem project={project} key={project._id}   />

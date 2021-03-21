@@ -35,13 +35,15 @@ const NewProjectForm = () => {
     }
     return ( 
         <>
-        <button type="button" className="btn btn-block btn-primario" onClick={showForm}>Nuevo proyecto</button>
+        <button type="button" className="btn btn-block btn-primary mt-4" onClick={showForm}>New Project</button>
 
         { formProject 
         ? (
-            <form className="formulario-nuevo-proyecto" onSubmit={handleSubmit}>
-                <input type="text" className="input-text" placeholder="Nombre Proyecto" name="projectName" onChange={handleChange} value={projectName} />
-                <input type="submit" className="btn btn-block btn-primario" value="Agregar proyecto" />
+            <form className="p-2" onSubmit={handleSubmit}>
+                <div className="form-group">
+                <input type="text" className="form-control" placeholder="Project Name" name="projectName" onChange={handleChange} value={projectName} />
+                </div>
+                <input type="submit" className="btn btn-block btn-primary" value="Add Project" />
             </form>
         )
         : null

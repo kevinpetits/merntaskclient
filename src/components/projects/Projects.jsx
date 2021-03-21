@@ -16,20 +16,23 @@ const Projects = () => {
     }, [])
 
     return ( 
-        <div className="contenedor-app">
+        <>
             <Sidebar />
 
-            <div className="seccion-principal">
+            <div className="main-panel">
                 <Bar />
 
-                <main>
+
+
+
+                {/* <main>
                 <FormTask />
                     <div className="contenedor-tareas">
                         <TaskList />
                     </div>
-                </main>
+                </main> */}
             </div>
-        </div>
+        </>
      );
 }
  
