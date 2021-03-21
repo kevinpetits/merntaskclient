@@ -16,17 +16,16 @@ const TaskList = () => {
     const [actualProject] = project;
     // Elimina un proyecto
     const handleDelete = () => {
-        deleteProject(actualProject.id);
+        deleteProject(actualProject._id);
     }
     return ( 
         <>
         <h2>Proyecto: {actualProject.projectName}</h2>
-
         <ul className="listado-tareas">
             {projectTasks.length === 0 
             ? (<li className="tarea"><p>No hay tareas</p></li>)
-            :   projectTasks.map(task => (
-                    <Task task={task} key={task.id} />
+            :   projectTasks.map((task, index)=> (
+                    <Task task={task} key={index} />
                 ))
             }
         </ul>

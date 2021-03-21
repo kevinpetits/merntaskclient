@@ -8,13 +8,13 @@ const Task = ({task}) => {
     const { project } =  contextProject;
     // obtener la función del context de tarea
     const contextTask = useContext(TaskContext);
-    const { deleteTask, getTasksByProject, changeTaskStatus, actualTask } = contextTask;
+    const { deleteTask, getTasksByProject, updateTask, actualTask } = contextTask;
     // Extraer el proyecto
     const [actualProject] = project;
     // Función que se ejecuta cuando el usuario presiona el btn de eliminar tarea
     const handleDeleteTask = (id) => {
-        deleteTask(id);
-        getTasksByProject(actualProject.id);
+        deleteTask(id, actualProject._id);
+        getTasksByProject(actualProject._id);
     }
     // Función que modifica el estado de las tareas
     const handleTaskStatus = task => {
@@ -23,7 +23,7 @@ const Task = ({task}) => {
         } else {
             task.status = true;
         }
-        changeTaskStatus(task);
+        updateTask(task);
     }
     // Agrega una tarea actual cuando el usuario desea editarla
     const selectTask = task => {
@@ -44,7 +44,7 @@ const Task = ({task}) => {
                 <button type="button" className="btn btn-primario" onClick={() => selectTask(task)}>
                     Editar
                 </button>
-                <button type="button" className="btn btn-secundario" onClick={() => handleDeleteTask(task.id)}>
+                <button type="button" className="btn btn-secundario" onClick={() => handleDeleteTask(task._id)}>
                     Eliminar
                 </button>
             </div>

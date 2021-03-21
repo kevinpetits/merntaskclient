@@ -1,7 +1,27 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom'
+import React, {useContext, useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/auth/authContext';
 
-const Signin = () => {
+const Signin = (props) => {
+
+    //Extracting values from context
+    const alertContext = useContext(AlertContext);
+    const {alert, showAlert} = alertContext;
+
+    const authContext = useContext(AuthContext);
+    const {message, auth, signIn} = authContext;
+
+    useEffect(() => {
+        if(auth){
+            props.history.push('/projects')
+        }
+        if(message){
+            showAlert(message.msg, message.category);
+        }
+        // eslint-disable-next-line
+    }, [message, auth, props.history])
+
     // State para iniciar sesión
     const [user, setUser] = useState({
         email: '',
@@ -19,9 +39,17 @@ const Signin = () => {
     // Cuando el usuario quiere iniciar sesión
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        if(email.trim() === '' || password.trim() === ''){
+            showAlert('All fields are required', 'alerta-error');
+            return;
+        }
+
+        signIn({email, password});
     }
     return ( 
         <div className="form-usuario">
+            {alert ? (<div className={`alerta ${alert.category}`}>{alert.msg}</div>) : null}
             <div className="contenedor-form sombra-dark">
                 <h1>Iniciar sesión</h1>
                 <form onSubmit={handleSubmit}>

@@ -1,25 +1,12 @@
 import React, { useReducer } from 'react';
 import TaskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import {v4 as uuid} from 'uuid';
-import {PROJECT_TASKS, ADD_TASK, VALIDATE_TASK, DELETE_TASK, STATUS_TASK, ACTUAL_TASK, UPDATE_TASK} from './../../types';
+import {PROJECT_TASKS, ADD_TASK, VALIDATE_TASK, DELETE_TASK, ACTUAL_TASK, UPDATE_TASK} from './../../types';
+import clientAxios from '../../config/axios';
 
 const TaskState = props => {
     const initialState = {
-        tasks: [
-            {id: 1, taskName: 'Elegir plataforma', status: true, projectId: 1},
-            {id: 2, taskName: 'Elegir colores', status: false, projectId: 1},
-            {id: 3, taskName: 'Elegir plataforma de pagos', status: false, projectId: 2},
-            {id: 4, taskName: 'Elegir hostin12g', status: true, projectId: 3},
-            {id: 5, taskName: 'Crear produc12tos', status: false, projectId: 4},
-            {id: 6, taskName: 'Elegir pla51taforma de pagos', status: true, projectId: 2},
-            {id: 7, taskName: 'Elegir hosti512ng', status: true, projectId: 3},
-            {id: 8, taskName: 'Crear productos', status: true, projectId: 4},
-            {id: 9, taskName: 'Elegir plat52aforma de pagos', status: false, projectId: 2},
-            {id: 10, taskName: 'Elegir ho4sting', status: false, projectId: 3},
-            {id: 11, taskName: 'Crear pro67ductos', status: true, projectId: 4},
-        ],
-        projectTasks: null,
+        projectTasks: [],
         taskError: false,
         selectedTask: null
     };
@@ -27,19 +14,28 @@ const TaskState = props => {
     const [state, dispatch] = useReducer(TaskReducer, initialState);
     // Serie de funciones para el CRUD
     // Obtiene las tareas por proyecto seleccionado
-    const getTasksByProject = projectId => {
-        dispatch({
-            type: PROJECT_TASKS,
-            payload: projectId
-        })
+    const getTasksByProject = async projectId => {
+        try {
+            const response = await clientAxios.get('/api/tasks', {params: {projectId}});
+            dispatch({
+                type: PROJECT_TASKS,
+                payload: response.data.tasks
+            })
+        } catch (error) {
+            console.log(error.response);   
+        }
     }
     // Agregar nueva tarea
-    const addTaskToProject = task => {
-        task.id = uuid();
-        dispatch({
-            type: ADD_TASK,
-            payload: task
-        })
+    const addTaskToProject = async task => {
+        try {
+            const response = await clientAxios.post('/api/tasks', task);
+            dispatch({
+                type: ADD_TASK,
+                payload: response.data.task
+            });
+        } catch (error) {
+            console.log(error.response)
+        }
     }
     // Valida el formulario por errores
     const validateTask = () => {
@@ -48,18 +44,36 @@ const TaskState = props => {
         })
     }
     // Elimina una tarea
-    const deleteTask = taskId => {
-        dispatch({
-            type: DELETE_TASK,
-            payload: taskId
-        })
+    const deleteTask = async (taskId, projectId) => {
+        try {
+            await clientAxios.delete(`/api/tasks/${taskId}`, { params: {projectId}});
+            dispatch({
+                type: DELETE_TASK,
+                payload: taskId
+            })
+        } catch (error) {
+            console.log(error.response)
+        }
     }
-    // Modifica el estado de una tarea completo/incompleto
-    const changeTaskStatus = task => {
-        dispatch({
-            type: STATUS_TASK,
-            payload: task
-        })
+    // // Modifica el estado de una tarea completo/incompleto
+    // const changeTaskStatus = task => {
+    //     dispatch({
+    //         type: STATUS_TASK,
+    //         payload: task
+    //     })
+    // }
+    // Modificamos el nombre de la tarea seleccionada
+    const updateTask = async task => {
+        try {
+            const response = await clientAxios.put(`/api/tasks/${task._id}`, task);
+            dispatch({
+                type: UPDATE_TASK,
+                payload: response.data.task
+            })
+        } catch (error) {
+            console.log(error.response)
+        }
+        
     }
     // Selecciona la tarea actual (Es necesario para modificarla)
     const actualTask = task => {
@@ -68,17 +82,16 @@ const TaskState = props => {
             payload: task
         })
     }
-    // Modificamos el nombre de la tarea seleccionada
-    const updateTask = task => {
-        dispatch({
-            type: UPDATE_TASK,
-            payload: task
-        })
-    }
+    // // Modificamos el nombre de la tarea seleccionada
+    // const updateTask = task => {
+    //     dispatch({
+    //         type: UPDATE_TASK,
+    //         payload: task
+    //     })
+    // }
     return (
         <TaskContext.Provider
         value={{
-            tasks: state.tasks,
             projectTasks: state.projectTasks,
             taskError: state.taskError,
             selectedTask: state.selectedTask,
@@ -86,7 +99,6 @@ const TaskState = props => {
             addTaskToProject,
             validateTask,
             deleteTask,
-            changeTaskStatus,
             actualTask,
             updateTask
         }}

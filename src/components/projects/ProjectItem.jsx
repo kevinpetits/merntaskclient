@@ -10,6 +10,7 @@ const ProjectItem = ({project}) => {
     const contextTask = useContext(TaskContext);
     const { getTasksByProject } = contextTask;
     // Función para agregar el proyecto actual
+    
     const handleClick = (id) => {
         actualProject(id);  // Fijar un proyecto actual
         getTasksByProject(id); // Filtrar las tareas cuando se de click
@@ -17,7 +18,7 @@ const ProjectItem = ({project}) => {
 
     return ( 
         <li>
-            <button type="button" className="btn btn-blank" onClick={() => handleClick(project.id)}>
+            <button type="button" className="btn btn-blank" onClick={() => handleClick(project._id)}>
                 {project.projectName}
             </button>
         </li>

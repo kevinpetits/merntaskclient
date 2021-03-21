@@ -1,10 +1,20 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import Bar from '../layout/Bar';
 import Sidebar from './../layout/Sidebar';
 import FormTask from '../tasks/FormTask';
 import TaskList from '../tasks/TaskList';
+import AuthContext from '../../context/auth/authContext';
 
-const Porjects = () => {
+const Projects = () => {
+
+    //Extracting auth info
+    const authContext = useContext(AuthContext);
+    const {getAuthenticatedUser} = authContext;
+
+    useEffect(() => {
+        getAuthenticatedUser();
+    }, [])
+
     return ( 
         <div className="contenedor-app">
             <Sidebar />
@@ -23,4 +33,4 @@ const Porjects = () => {
      );
 }
  
-export default Porjects;
+export default Projects;
