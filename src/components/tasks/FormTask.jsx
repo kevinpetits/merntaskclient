@@ -72,7 +72,7 @@ const FormTask = () => {
                 </div>
             </form>
 
-            {taskError ? <div class="alert alert-danger" role="alert">
+            {taskError ? <div className="alert alert-danger" role="alert">
             Task name is required!
             </div>: null}
         </div>

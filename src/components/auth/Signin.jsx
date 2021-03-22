@@ -49,7 +49,7 @@ const Signin = (props) => {
     }
     return ( 
         <div className="container-fluid">
-          {alert ? (<div class="alert alert-danger text-center" role="alert">
+          {alert ? (<div className="alert alert-danger text-center">
             {alert.msg}
             </div>) : null}
           <div className="row justify-content-center">
@@ -63,13 +63,11 @@ const Signin = (props) => {
                     <div className="row">
                       <div className="col-md-12">
                         <div className="form-group">
-                          <label className="bmd-label-floating" htmlFor="email">Email</label>
                           <input type="email" name="email" id="email" className="form-control" placeholder="Your email here" value={email} onChange={handleChange}  />
                         </div>
                       </div>
                       <div className="col-md-12">
                         <div className="form-group">
-                          <label className="bmd-label-floating" htmlFor="password">Password</label>
                           <input type="password" name="password" id="password" className="form-control" placeholder="Your password here" value={password} onChange={handleChange} />
                         </div>
                       </div>

@@ -21,14 +21,17 @@ const ProjectList = () => {
         // eslint-disable-next-line
     }, [message])
     // revisar si proyectos tiene contenido
-    if(projects.length === 0) return <p>No projects yet, start creating one!</p>;  
-    return ( 
+    if(projects.length === 0) return <h3 className="text-center">No projects yet, start creating one!</h3>;  
+    return (
+        <>
+        <h3 className="text-center">Your Projects</h3> 
         <ul className="nav">
             {alert ? (<div className={`alerta ${alert.category}`}>{alert.msg}</div>) : null}
                 {projects.map(project => 
                         <ProjectItem project={project} key={project._id}   />
                 )}
         </ul>
+        </>
      );    
 }
  

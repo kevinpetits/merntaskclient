@@ -33,8 +33,8 @@ const Task = ({task}) => {
         <tr>
             <td className="text-center" style={{overflow: "auto", whiteSpace: "nowrap", wordBreak: "break-all", maxWidth: "800px"}}>{task.taskName}</td>
             <td className="text-center">{task.status 
-                 ? (<button type="button" className="btn btn-success btn-block btn-sm" onClick={() => handleTaskStatus(task)}>Completo</button>)
-                 : (<button type="button" className="btn btn-danger btn-block btn-sm" onClick={() => handleTaskStatus(task)}>Incompleto</button>)
+                 ? (<button type="button" className="btn btn-success btn-block btn-sm" onClick={() => handleTaskStatus(task)}>Completed</button>)
+                 : (<button type="button" className="btn btn-danger btn-block btn-sm" onClick={() => handleTaskStatus(task)}>Incompleted</button>)
                  }</td>
 
             <td className="td-actions text-center">

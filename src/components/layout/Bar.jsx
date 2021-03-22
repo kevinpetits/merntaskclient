@@ -32,14 +32,14 @@ const Bar = () => {
             </button>
             <div className="collapse navbar-collapse justify-content-end">
               <ul className="navbar-nav">
-                 <li className="nav-item dropdown">
-                  <button className="btn btn-primary btn-link" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={() => logOut()}>
-                    Logout<i className="material-icons">person</i>
-                    <p className="d-lg-none d-md-block">
-                      Account
-                    </p>
-                  </button>
-                </li>
+                <li className="nav-item dropdown">
+                <a className="nav-link" onClick={() => logOut()} href="#!">
+                  <i className="material-icons">person</i>
+                  <p className="d-lg-inline-block d-md-block">
+                    Log Out
+                  </p>
+                </a>
+              </li>
               </ul>
             </div>
           </div>

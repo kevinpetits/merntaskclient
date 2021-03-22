@@ -49,7 +49,7 @@ const NewProjectForm = () => {
         : null
         }
 
-        { formError ? <div class="alert alert-danger" role="alert">
+        { formError ? <div className="alert alert-danger" role="alert">
             Project name is required!
             </div> : null}
         </>
