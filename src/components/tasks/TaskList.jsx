@@ -11,7 +11,7 @@ const TaskList = () => {
     const contextTask = useContext(TaskContext);
     const { projectTasks } = contextTask;
     // Si no hay proyecto seleccionado
-    if(!project) return <h2>Selecciona un proyecto</h2>
+    if(!project) return <h2 className="text-center">Select a Project</h2>
     // Array destructuring para extraer el proyecto actual
     const [actualProject] = project;
     // Elimina un proyecto
